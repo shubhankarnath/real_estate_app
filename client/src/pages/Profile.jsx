@@ -13,8 +13,7 @@ import { updateUserStart, updateUserSuccess, updateUserFailure,
         deleteUserStart, deleteUserSuccess, deleteUserFailure,
         signOutUserStart, signOutUserSuccess, signOutUserFailure } from '../redux/user/userSlice';
 import {useDispatch} from "react-redux"
-import { Link, Navigate } from 'react-router-dom';
-import Listing from '../../../api/models/listing.model';
+import { Link, Navigate } from 'react-router-dom'; 
 
 export default function Profile() {
   const fileRef = useRef(null);
