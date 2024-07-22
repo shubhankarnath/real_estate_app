@@ -1,16 +1,20 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import dotenv from 'dotenv';
 
-// https://vitejs.dev/config/
+// Load environment variables from .env file
+dotenv.config();
+
+const backendUrl = process.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
 export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: backendUrl,
         changeOrigin: true,
       },
     },
   },
-
   plugins: [react()],
 });
