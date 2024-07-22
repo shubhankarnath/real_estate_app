@@ -30,6 +30,7 @@ export default function Profile() {
   const [userListings, setUserListing] = useState([]);
 
   const [listingDeleteError, setListingDeleteError] = useState(false);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const dispatch = useDispatch();
   console.log(import.meta.env.VITE_NAME);
@@ -75,7 +76,7 @@ export default function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`${backendUrl}/api/user/update/${currentUser._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ export default function Profile() {
   const handleDelete = async() =>{
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${backendUrl}/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -121,7 +122,7 @@ export default function Profile() {
   const handleSignOut = async()=>{
     try {
       dispatch(signOutUserStart());
-      const res = await fetch(`/api/auth/signout/${currentUser._id}`, {
+      const res = await fetch(`${backendUrl}/api/auth/signout/${currentUser._id}`, {
         method : 'POST',
       })
 
@@ -146,7 +147,7 @@ export default function Profile() {
     try {
       setGetUserListingError(false)
       setGetUserListingLoading(true);
-      const res = await fetch(`/api/user/userListing/${currentUser._id}`)
+      const res = await fetch(`${backendUrl}/api/user/userListing/${currentUser._id}`)
 
       const data = await res.json();
       if(data.success == false){
@@ -174,7 +175,7 @@ export default function Profile() {
       setListingDeleteError(false);
 
       console.log(id);
-      const res = await fetch(`/api/listing/delete/${id}`, {
+      const res = await fetch(`${backendUrl}/api/listing/delete/${id}`, {
         method : 'DELETE'
       })
 

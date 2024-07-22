@@ -30,6 +30,7 @@ export default function UpdateListing() {
   // console.log(files); 
   // console.log(error); 
   console.log(formData);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const  fetchListing = async()=>{
@@ -37,7 +38,7 @@ export default function UpdateListing() {
       setListingId(params.listingId);
       console.log(listingId);;
 
-      const res = await fetch(`/api/listing/get/${listingId}`);
+      const res = await fetch(`${backendUrl}/api/listing/get/${listingId}`);
 
       console.log(res);
       const data = await res.json();
@@ -160,7 +161,7 @@ export default function UpdateListing() {
         setLoading(true);
         setError(false);
         // setFormData({...formData, userRef : currentUser.id})
-        const res = await fetch(`/api/listing/update/${params.listingId}`, {
+        const res = await fetch(`${backendUrl}/api/listing/update/${params.listingId}`, {
           method : "POST",
           headers: {
             'Content-Type': 'application/json',

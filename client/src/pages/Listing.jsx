@@ -36,7 +36,7 @@ SwiperCore.use([Navigation]);
     const params = useParams();
     const [location, setLocation] = useState({ lat: -34.397, lng: 150.644 });
 
-
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     // console.log(listing);
     // console.log(error);
     // console.log(loading);
@@ -52,7 +52,7 @@ SwiperCore.use([Navigation]);
                 const listingId = params.listingId;
                 // console.log(listingId);;
     
-                const res = await fetch(`/api/listing/get/${listingId}`);
+                const res = await fetch(`${backendUrl}/api/listing/get/${listingId}`);
     
                 const data = await res.json();
               

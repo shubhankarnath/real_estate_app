@@ -52,6 +52,7 @@ export default function Search() {
     const sortFromUrl = urlParams.get('sort')
     const orderFromUrl = urlParams.get('order')
     const radiusInKilometerFromUrl = urlParams.get('radiusInKilometer')
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     console.log(offer);
     if (
@@ -91,7 +92,7 @@ export default function Search() {
         // }
         const searchQuery = urlParams.toString();
 
-        const res = await fetch(`/api/listing/get?${searchQuery}`);
+        const res = await fetch(`${backendUrl}/api/listing/get?${searchQuery}`);
 
         const data = await res.json();
         // console.log("listings ", data)
@@ -213,7 +214,7 @@ export default function Search() {
 
       const searchQuery = urlParams.toString();
 
-      const res = await fetch(`/api/listing/get?${searchQuery}`);
+      const res = await fetch(`${backendUrl}/api/listing/get?${searchQuery}`);
       const data = await res.json();
 
       // console.log(data);

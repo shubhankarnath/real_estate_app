@@ -10,6 +10,7 @@ export default function Home() {
   const [offerListing, setOfferListing] = useState(false);
   const [rentListing, setRentListing] = useState(false);
   const [sellListing, setSellListing] = useState(false);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   // console.log(offerListing);
   SwiperCore.use([Navigation]);
@@ -23,7 +24,7 @@ export default function Home() {
 useEffect(() =>{
     const fetchOfferListing = async()=>{
       try {
-        const res = await fetch(`/api/listing/get?offer=true&limit=3`);
+        const res = await fetch(`${backendUrl}/api/listing/get?offer=true&limit=3`);
         const data = await res.json();
 
         if(data.success === false){
@@ -38,7 +39,7 @@ useEffect(() =>{
     }
     const fetchRentListing = async() =>{
       try {
-        const res = await fetch(`/api/listing/get?type=rent&limit=3`);
+        const res = await fetch(`${backendUrl}/api/listing/get?type=rent&limit=3`);
         const data = await res.json();
 
         if(data.success === false){
@@ -55,7 +56,7 @@ useEffect(() =>{
 
     const fetchSellListing = async() =>{
       try {
-        const res = await fetch(`/api/listing/get?type=sell&limit=3`);
+        const res = await fetch(`${backendUrl}/api/listing/get?type=sell&limit=3`);
         const data = await res.json();
 
         if(data.success === false){

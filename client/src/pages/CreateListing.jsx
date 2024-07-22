@@ -34,6 +34,7 @@ export default function CreateListing() {
     }
   })
   const [location, setLocation] = useState({ lat: -34.397, lng: 150.644 });
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   // console.log(files); 
   console.log(error); 
@@ -145,7 +146,7 @@ export default function CreateListing() {
         setLoading(true);
         setError(false);
         // setFormData({...formData, userRef : currentUser.id})
-        const res = await fetch('/api/listing/create', {
+        const res = await fetch(`${backendUrl}/api/listing/create`, {
           method : "POST",
           headers: {
             'Content-Type': 'application/json',

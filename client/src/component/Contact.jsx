@@ -8,13 +8,14 @@ export default function Contact({ listing }) {
   const onChange = (e) => {
     setMessage(e.target.value);
   };
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchLandlord = async () => {
       try {
         setGetLandlordError(false);
         if(!listing) return;
-        const res = await fetch(`/api/user/${listing.userRef}`);
+        const res = await fetch(`${backendUrl}/api/user/${listing.userRef}`);
         const data = await res.json();
 
         if(data.success == false){

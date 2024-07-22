@@ -5,13 +5,13 @@ import dotenv from 'dotenv';
 // Load environment variables from .env file
 dotenv.config();
 
-const backendUrl = process.env.VITE_BACKEND_URL || 'http://localhost:3000';
+ 
 
 export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: backendUrl,
+        target: "http://localhost:3000",
         changeOrigin: true,
       },
     },
