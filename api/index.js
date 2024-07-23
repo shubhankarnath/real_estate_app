@@ -5,14 +5,24 @@ import userRouter from './routes/user.route.js'
 import authRouter from "./routes/auth.route.js"
 import listingRouter from "./routes/listing.route.js"
 import cookieParser from 'cookie-parser';
-import path from 'path'
+import path from 'path';
+import cors from 'cors';
 dotenv.config();
 
 const app = express();
+
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(cors(corsOptions));
+
 // console.log(process.env.MONGO);
+
+
 mongoose
 .connect(process.env.MONGO)
 .then(()=> {
